@@ -1,0 +1,37 @@
+﻿<Window x:Class="Diary.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Diary"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="370" Width="700" ResizeMode="NoResize">
+    <Grid Background="LemonChiffon">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Content="Diary" FontSize="77" FontWeight="ExtraLight" FontStyle="Italic" VerticalAlignment="Center" HorizontalContentAlignment="Center" Foreground="DarkBlue" Margin="0,0,0,50"></Label>
+        <Button Click="regButton_Click" HorizontalAlignment="Right" Background="AntiqueWhite" Margin="0,10,10,110" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
+            <Button.Content>
+                <TextBlock x:Name="regTB" Text="Зарегистрироваться" Foreground="DarkBlue" FontSize="14"></TextBlock>
+            </Button.Content>
+        </Button>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Логин:" HorizontalAlignment="Right" FontSize="22" Margin="0,5,10,5"></TextBlock>
+            <TextBlock Grid.Row="1" Text="Пароль:" HorizontalAlignment="Right" FontSize="22" Margin="0,5,10,5"></TextBlock>
+            <TextBox x:Name="loginTB" Grid.Column="1" FontSize="22" Margin="0,5,10,5"></TextBox>
+            <PasswordBox x:Name="passPB" Grid.Column="1" Grid.Row="1" FontSize="22" Margin="0,5,10,5"></PasswordBox>
+            <Button Click="ClickLogin" Grid.Row="2" Grid.ColumnSpan="2" Content="Войти" Foreground="DarkBlue" FontSize="22" Margin="100,20,100,20" Background="AntiqueWhite"></Button>
+        </Grid>
+    </Grid>
+</Window>
