@@ -11,7 +11,6 @@ namespace Diary.Database
         private static PlannerContext _context;
         public static PlannerContext Context()
         {
-            int s;
             if(_context == null)
                 _context = new PlannerContext();
             return _context;
