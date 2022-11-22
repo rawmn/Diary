@@ -142,6 +142,20 @@ namespace Diary
                 //}
                 Load();
             }
+            else if (tomorrowLB.SelectedItem is Task t2)
+            {
+                Task task = Data.Context().Tasks.First(x => x.Id == t2.Id);
+                task.Status = t2.Status;
+                Data.Context().SaveChanges();
+                MessageBox.Show($"{task.Status}    {t2.Status}");
+            }
+            else if (allLB.SelectedItem is Task t3)
+            {
+                Task task = Data.Context().Tasks.First(x => x.Id == t3.Id);
+                task.Status = t3.Status;
+                Data.Context().SaveChanges();
+                MessageBox.Show($"{task.Status}    {t3.Status}");
+            }
         }
 
         private void ClickExit(object sender, RoutedEventArgs e)
