@@ -35,7 +35,7 @@ namespace Diary
             DateTime now = DateTime.Now;
             DateTime tomorrow = DateTime.Now.AddDays(1);
 
-            var allTasks = Data.Context().Tasks.Where(x=>x.UserId == user.Id).ToList();
+            var allTasks = Data.Context().Tasks.Where(x => x.UserId == user.Id).ToList();
             var todayTasks = Data.Context().Tasks.Where(x => x.UserId == user.Id).Include(x => x.Day).ToList();
             var tobays = todayTasks.Where(x => x.Day.Date.Value.Day == now.Day && x.Day.Date.Value.Month == now.Month && x.Day.Date.Value.Year == now.Year).ToList();
             var tomorrowTasks = Data.Context().Tasks.Where(x => x.UserId == user.Id).Include(x => x.Day).ToList();
@@ -85,12 +85,12 @@ namespace Diary
         {
             if (todayLB.SelectedItem is Task t)
             {
-                if (MessageBox.Show($"Подтвердите редактирование задачи\n\"{t.Name}\"","Подтверждение",MessageBoxButton.OKCancel,MessageBoxImage.Information) == MessageBoxResult.OK)
+                if (MessageBox.Show($"Подтвердите редактирование задачи\n\"{t.Name}\"", "Подтверждение", MessageBoxButton.OKCancel, MessageBoxImage.Information) == MessageBoxResult.OK)
                 {
                     EditTask editTask = new EditTask(t);
-                    if (editTask.ShowDialog() == true) 
+                    if (editTask.ShowDialog() == true)
                     {
-                        MessageBox.Show("Вы успешно отредактировали задачу!","Информация",MessageBoxButton.OK,MessageBoxImage.Information);
+                        MessageBox.Show("Вы успешно отредактировали задачу!", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
                         Load();
                     }
                 }
@@ -127,40 +127,60 @@ namespace Diary
             }
         }
 
-        private void ClickSave(object sender, RoutedEventArgs e)
+        private void ClickSave1(object sender, RoutedEventArgs e)
         {
             if (todayLB.SelectedItem is Task t)
             {
-                Task task = Data.Context().Tasks.First(x => x.Id == t.Id);
-                task.Status = t.Status;
-                Data.Context().SaveChanges();
-                MessageBox.Show($"{task.Status}    {t.Status}");
-                //if (Data.Context().SaveChanges() == 1)
-                //{
-                //    MessageBox.Show("Изменения успешно сохранены!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
-                //    Load();
-                //}
+                if (t.Status == true)
+                    t.Status = false;
+                else
+                    t.Status = true;
+                if (Data.Context().SaveChanges() == 1)
+                {
+                    MessageBox.Show("Статус успешно изменен!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Load();
+                }
                 Load();
             }
-            else if (tomorrowLB.SelectedItem is Task t2)
+        }
+
+        private void ClickSave2(object sender, RoutedEventArgs e)
+        {
+            if (tomorrowLB.SelectedItem is Task t2)
             {
-                Task task = Data.Context().Tasks.First(x => x.Id == t2.Id);
-                task.Status = t2.Status;
-                Data.Context().SaveChanges();
-                MessageBox.Show($"{task.Status}    {t2.Status}");
+                if (t2.Status == true)
+                    t2.Status = false;
+                else
+                    t2.Status = true;
+                if (Data.Context().SaveChanges() == 1)
+                {
+                    MessageBox.Show("Статус успешно изменен!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Load();
+                }
+                Load();
             }
-            else if (allLB.SelectedItem is Task t3)
+        }
+
+        private void ClickSave3(object sender, RoutedEventArgs e)
+        {
+            if (allLB.SelectedItem is Task t3)
             {
-                Task task = Data.Context().Tasks.First(x => x.Id == t3.Id);
-                task.Status = t3.Status;
-                Data.Context().SaveChanges();
-                MessageBox.Show($"{task.Status}    {t3.Status}");
+                if(t3.Status == true)
+                    t3.Status = false;
+                else
+                    t3.Status = true;
+                if (Data.Context().SaveChanges() == 1)
+                {
+                    MessageBox.Show("Статус успешно изменен!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Load();
+                }
+                Load();
             }
         }
 
         private void ClickExit(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Вы действительно хотите выйти из своего профиля?","Сообщение",MessageBoxButton.YesNo,MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Вы действительно хотите выйти из своего профиля?", "Сообщение", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 MainWindow main = new MainWindow();
                 main.Show();
@@ -222,6 +242,36 @@ namespace Diary
                 Load();
             }
 
+        }
+
+        private void allLB_LostFocus(object sender, RoutedEventArgs e)
+        {
+            allLB.RowDetailsVisibilityMode = DataGridRowDetailsVisibilityMode.Collapsed;
+        }
+
+        private void allLB_GotFocus(object sender, RoutedEventArgs e)
+        {
+            allLB.RowDetailsVisibilityMode = DataGridRowDetailsVisibilityMode.VisibleWhenSelected;
+        }
+
+        private void tomorrowLB_LostFocus(object sender, RoutedEventArgs e)
+        {
+            tomorrowLB.RowDetailsVisibilityMode = DataGridRowDetailsVisibilityMode.Collapsed;
+        }
+
+        private void tomorrowLB_GotFocus(object sender, RoutedEventArgs e)
+        {
+            tomorrowLB.RowDetailsVisibilityMode = DataGridRowDetailsVisibilityMode.VisibleWhenSelected;
+        }
+
+        private void todayLB_LostFocus(object sender, RoutedEventArgs e)
+        {
+            todayLB.RowDetailsVisibilityMode = DataGridRowDetailsVisibilityMode.Collapsed;
+        }
+
+        private void todayLB_GotFocus(object sender, RoutedEventArgs e)
+        {
+            todayLB.RowDetailsVisibilityMode = DataGridRowDetailsVisibilityMode.VisibleWhenSelected;
         }
     }
 }

@@ -9,6 +9,7 @@ namespace Diary.Database
     {
         public PlannerContext()
         {
+            Database.EnsureCreated();
         }
 
         public virtual DbSet<Day> Days { get; set; } = null!;

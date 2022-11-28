@@ -34,10 +34,10 @@
                 <RowDefinition/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <DataGrid x:Name="todayLB" Background="AntiqueWhite" CanUserAddRows="False" AutoGenerateColumns="False" ColumnWidth="*" SelectionMode="Single" Opacity="0.9">
+            <DataGrid x:Name="todayLB" LostFocus="todayLB_LostFocus" GotFocus="todayLB_GotFocus" Background="AntiqueWhite" CanUserAddRows="False" AutoGenerateColumns="False" ColumnWidth="*" SelectionMode="Single" Opacity="0.9">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Задачи на сегодня:" Binding="{Binding Name}" IsReadOnly="True" CanUserSort="False"></DataGridTextColumn>
-                    <DataGridCheckBoxColumn Width="20" Binding="{Binding Status}" CanUserResize="False" x:Name="done123">
+                    <DataGridCheckBoxColumn Width="20" IsReadOnly="True" Binding="{Binding Status}" CanUserResize="False" x:Name="done123">
                         <DataGridCheckBoxColumn.Header>
                             <Image Source="/Images/done.png" Stretch="Fill"></Image>
                         </DataGridCheckBoxColumn.Header>
@@ -63,8 +63,8 @@
                     <Image Source="/Images/create.png" Stretch="Fill" ToolTip="Создать"></Image>
                 </Button>
                 <Separator/>
-                <Button Click="ClickSave">
-                    <Image Source="/Images/save.png" Stretch="Fill" ToolTip="Сохранить"></Image>
+                <Button Click="ClickSave1">
+                    <Image Source="/Images/change.png" Stretch="Fill" ToolTip="Изменить статус"></Image>
                 </Button>
                 <Separator/>
                 <TextBlock x:Name="todayprogressTB" FontSize="27"></TextBlock>
@@ -76,10 +76,10 @@
                 <RowDefinition/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <DataGrid x:Name="tomorrowLB" AutoGenerateColumns="False" CanUserAddRows="False" ColumnWidth="*" Background="AntiqueWhite" SelectionMode="Single" Opacity="0.9">
+            <DataGrid x:Name="tomorrowLB" LostFocus="tomorrowLB_LostFocus" GotFocus="tomorrowLB_GotFocus" AutoGenerateColumns="False" CanUserAddRows="False" ColumnWidth="*" Background="AntiqueWhite" SelectionMode="Single" Opacity="0.9">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Задачи на завтра:" Binding="{Binding Name}" IsReadOnly="True" CanUserSort="False"></DataGridTextColumn>
-                    <DataGridCheckBoxColumn Width="20" Binding="{Binding Status}" CanUserResize="False">
+                    <DataGridCheckBoxColumn Width="20" IsReadOnly="True" Binding="{Binding Status}" CanUserResize="False">
                         <DataGridCheckBoxColumn.Header>
                             <Image Source="/Images/done.png" Stretch="Fill"></Image>
                         </DataGridCheckBoxColumn.Header>
@@ -105,8 +105,8 @@
                     <Image Source="/Images/create.png" Stretch="Fill" ToolTip="Создать"></Image>
                 </Button>
                 <Separator/>
-                <Button Click="ClickSave">
-                    <Image Source="/Images/save.png" Stretch="Fill" ToolTip="Сохранить"></Image>
+                <Button Click="ClickSave2">
+                    <Image Source="/Images/change.png" Stretch="Fill" ToolTip="Изменить статус"></Image>
                 </Button>
                 <Separator/>
                 <TextBlock x:Name="tomorrowprogressTB" FontSize="27"></TextBlock>
@@ -118,10 +118,10 @@
                 <RowDefinition/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <DataGrid x:Name="allLB" AutoGenerateColumns="False" ColumnWidth="*" CanUserAddRows="False" Background="AntiqueWhite" SelectionMode="Single" Grid.ColumnSpan="2" Opacity="0.9">
+            <DataGrid x:Name="allLB" AutoGenerateColumns="False" LostFocus="allLB_LostFocus" GotFocus="allLB_GotFocus" ColumnWidth="*" CanUserAddRows="False" Background="AntiqueWhite" SelectionMode="Single" Grid.ColumnSpan="2" Opacity="0.9">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Все задачи:" Binding="{Binding Name}" IsReadOnly="True" CanUserSort="False"></DataGridTextColumn>
-                    <DataGridCheckBoxColumn Width="20" Binding="{Binding Status}" CanUserResize="False">
+                    <DataGridCheckBoxColumn Width="20" IsReadOnly="True" Binding="{Binding Status}" CanUserResize="False">
                         <DataGridCheckBoxColumn.Header>
                             <Image Source="/Images/done.png" Stretch="Fill"></Image>
                         </DataGridCheckBoxColumn.Header>
@@ -147,8 +147,8 @@
                     <Image Source="/Images/create.png" Stretch="Fill" ToolTip="Создать"></Image>
                 </Button>
                 <Separator/>
-                <Button Click="ClickSave">
-                    <Image Source="/Images/save.png" Stretch="Fill" ToolTip="Сохранить"></Image>
+                <Button Click="ClickSave3">
+                    <Image Source="/Images/change.png" Stretch="Fill" ToolTip="Изменить статус"></Image>
                 </Button>
                 <Separator/>
                 <TextBlock x:Name="allprogressTB" FontSize="27"></TextBlock>
